@@ -8,7 +8,7 @@ def test_models():
     users = User.query.all()
     theatres = Theatre.query.all()
     movies = Movie.query.all()
-    shows = Show.query.filter_by(theatre_id=1).all()
-    bookings = Booking.query.filter_by(user_id=1).all()
+    shows = Show.query.all()
+    bookings = Booking.query.all()
 
     return render_template('test_models.html', users=users, theatres=theatres, movies=movies, shows=shows, bookings=bookings)

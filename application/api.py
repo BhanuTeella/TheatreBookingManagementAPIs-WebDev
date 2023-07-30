@@ -1,22 +1,19 @@
-from flask import Flask
-from flask_restful import Api, Resource, reqparse
+from flask_restful import Resource, reqparse
 from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///example.db'
-db = SQLAlchemy(app)
-api = Api(app)
+from application.database import db
+from application.models import User, Theatre, Movie, Show, Booking
 
 
 
 class UserResource(Resource):
-    def get(self, user_id):
+    def get(self, user_id=None):
         user = User.query.get(user_id)
         if user:
             return {
                 'user_id': user.user_id,
                 'username': user.username,
-                'password': user.password
+                'password': user.password,
+                'email': user.email
             }
         else:
             return {'message': 'User not found'}, 404
@@ -25,14 +22,32 @@ class UserResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('username', type=str, required=True)
         parser.add_argument('password', type=str, required=True)
+        parser.add_argument('email', type=str, required=True)
         args = parser.parse_args()
 
-        user = User(username=args['username'], password=args['password'])
+        user = User(username=args['username'], password=args['password'], email=args['email'])
         db.session.add(user)
         db.session.commit()
 
         return {'message': 'User created', 'user_id': user.user_id}, 201
 
+    def put(self, user_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', type=str, required=True)
+        parser.add_argument('password', type=str, required=True)
+        parser.add_argument('email', type=str, required=True)
+        args = parser.parse_args()
+
+        user = User.query.get(user_id)
+        if user:
+            user.username = args['username']
+            user.password = args['password']
+            user.email = args['email']
+            db.session.commit()
+            return {'message': 'User updated', 'user_id': user.user_id}
+        else:
+            return {'message': 'User not found'}, 404
+        
     def delete(self, user_id):
         user = User.query.get(user_id)
         if user:
@@ -42,6 +57,9 @@ class UserResource(Resource):
         else:
             return {'message': 'User not found'}, 404
 
+
+
+
 class TheatreResource(Resource):
     def get(self, theatre_id):
         theatre = Theatre.query.get(theatre_id)
@@ -49,8 +67,9 @@ class TheatreResource(Resource):
             return {
                 'theatre_id': theatre.theatre_id,
                 'name': theatre.name,
-                'location': theatre.location,
-                'capacity': theatre.capacity
+                'address': theatre.location,
+                'capacity': theatre.capacity,
+                'image_url': theatre.image_url
             }
         else:
             return {'message': 'Theatre not found'}, 404
@@ -58,8 +77,9 @@ class TheatreResource(Resource):
     def post(self):
         parser = reqparse.RequestParser()
         parser.add_argument('name', type=str, required=True)
-        parser.add_argument('location', type=str, required=True)
+        parser.add_argument('address', type=str, required=True)
         parser.add_argument('capacity', type=int, required=True)
+        parser.add_argument('image_url', type=str, required=True)
         args = parser.parse_args()
 
         theatre = Theatre(name=args['name'], location=args['location'], capacity=args['capacity'])
@@ -103,6 +123,23 @@ class MovieResource(Resource):
 
         return {'message': 'Movie created', 'movie_id': movie.movie_id}, 201
 
+    def put(self, movie_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('name', type=str, required=True)
+        parser.add_argument('rating', type=float, required=True)
+        parser.add_argument('tags', type=str, required=True)
+        args = parser.parse_args()
+
+        movie = Movie.query.get(movie_id)
+        if movie:
+            movie.name = args['name']
+            movie.rating = args['rating']
+            movie.tags = args['tags']
+            db.session.commit()
+            return {'message': 'Movie updated', 'movie_id': movie.movie_id}
+        else:
+            return {'message': 'Movie not found'}, 404
+
     def delete(self, movie_id):
         movie = Movie.query.get(movie_id)
         if movie:
@@ -120,7 +157,7 @@ class ShowResource(Resource):
                 'show_id': show.show_id,
                 'show_time': show.show_time,
                 'movie_id': show.movie_id,
-                'show_price': show.show_price,
+                'ticket_price': show.ticket_price,
                 'theatre_id': show.theatre_id
             }
         else:
@@ -130,17 +167,36 @@ class ShowResource(Resource):
         parser = reqparse.RequestParser()
         parser.add_argument('show_time', type=str, required=True)
         parser.add_argument('movie_id', type=int, required=True)
-        parser.add_argument('show_price', type=float, required=True)
+        parser.add_argument('ticket_price', type=float, required=True)
         parser.add_argument('theatre_id', type=int, required=True)
         args = parser.parse_args()
 
-        show = Show(show_time=args['show_time'], movie_id=args['movie_id'], show_price=args['show_price'],
+        show = Show(show_time=args['show_time'], movie_id=args['movie_id'], ticket_price=args['ticket_price'],
                     theatre_id=args['theatre_id'])
         db.session.add(show)
         db.session.commit()
 
         return {'message': 'Show created', 'show_id': show.show_id}, 201
+    
+    def put(self, show_id):
+        parser = reqparse.RequestParser()
+        parser.add_argument('show_time', type=str, required=True)
+        parser.add_argument('movie_id', type=int, required=True)
+        parser.add_argument('ticket_price', type=float, required=True)
+        parser.add_argument('theatre_id', type=int, required=True)
+        args = parser.parse_args()
 
+        show = Show.query.get(show_id)
+        if show:
+            show.show_time = args['show_time']
+            show.movie_id = args['movie_id']
+            show.ticket_price = args['ticket_price']
+            show.theatre_id = args['theatre_id']
+            db.session.commit()
+            return {'message': 'Show updated', 'show_id': show.show_id}
+        else:
+            return {'message': 'Show not found'}, 404
+        
     def delete(self, show_id):
         show = Show.query.get(show_id)
         if show:
@@ -185,11 +241,3 @@ class BookingResource(Resource):
         else:
             return {'message': 'Booking not found'}, 404
 
-api.add_resource(UserResource, '/users', '/users/<int:user_id>')
-api.add_resource(TheatreResource, '/theatres', '/theatres/<int:theatre_id>')
-api.add_resource(MovieResource, '/movies', '/movies/<int:movie_id>')
-api.add_resource(ShowResource, '/shows', '/shows/<int:show_id>')
-api.add_resource(BookingResource, '/bookings', '/bookings/<int:booking_id>')
-
-if __name__ == '__main__':
-    app.run()

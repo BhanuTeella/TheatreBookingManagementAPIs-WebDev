@@ -14,7 +14,7 @@
   <h1>Theatre List</h1>
   <ul>
     {% for theatre in theatres %}
-      <li>{{ theatre.name }} - {{ theatre.location }}</li>
+      <li>{{ theatre.name }} - {{ theatre.address }}</li>
     {% endfor %}
   </ul>
 
@@ -28,14 +28,14 @@
   <h1>Shows for Theatre 1</h1>
   <ul>
     {% for show in shows %}
-      <li>{{ show.show_time }} - {{ show.movie.name }}</li>
+      <li>{{ show.start_time }} - {{ show.movie.name }}</li>
     {% endfor %}
   </ul>
 
   <h1>Bookings for User 1</h1>
   <ul>
     {% for booking in bookings %}
-      <li>{{ booking.show.movie.name }} - {{ booking.theatre.name }}</li>
+      <li>{{ booking.show.movie.name }} - {{ booking.show.theatre.name }}</li>
     {% endfor %}
   </ul>
 </body>
