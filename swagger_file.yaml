@@ -1,0 +1,581 @@
+swagger: '2.0'
+info:
+  title: Theatre Booking API
+  description: API for managing theatre bookings
+  version: 1.0.0
+host: localhost:5000
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: User management
+    description: users
+
+  - name: Theatre management
+    description: theatres
+    
+  - name: Movie management
+    description: movies
+  - name: Show management
+    description: shows
+  - name: Booking management
+    description: Bookings
+
+paths:
+
+  /users:
+    post:
+      tags:
+        - User management
+      summary: Create a new user
+      description: Creates a new user with the specified username, password, and email
+      parameters:
+        - name: user
+          in: body
+          description: The user to create
+          required: true
+          schema:
+            $ref: '#/definitions/UserInput'
+      responses:
+        201:
+          description: The created user
+          schema:
+            $ref: '#/definitions/User'
+  /users/{user_id}:
+    get:
+      tags:
+        - User management
+      summary: Get a user by ID
+      description: Returns the user with the specified ID
+      parameters:
+        - name: user_id
+          in: path
+          description: The ID of the user to retrieve
+          required: true
+          type: integer
+      responses:
+        200:
+          description: The user with the specified ID
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: User not found
+    put:
+      tags:
+        - User management
+      summary: Update a user by ID
+      description: Updates the user with the specified ID
+      parameters:
+        - name: user_id
+          in: path
+          description: The ID of the user to update
+          required: true
+          type: integer
+        - name: user
+          in: body
+          description: The updated user
+          required: true
+          schema:
+            $ref: '#/definitions/UserInput'
+      responses:
+        200:
+          description: The updated user
+          schema:
+            $ref: '#/definitions/User'
+        404:
+          description: User not found
+    delete:
+      tags:
+        - User management
+      summary: Delete a user by ID
+      description: Deletes the user with the specified ID
+      parameters:
+        - name: user_id
+          in: path
+          description: The ID of the user to delete
+          required: true
+          type: integer
+      responses:
+        204:
+          description: User deleted successfully
+        404:
+          description: User not found
+  /theatres:
+    post:
+      tags:
+        - Theatre management
+      summary: Create a new theatre
+      description: Creates a new theatre with the specified name, address, capacity, and image URL
+      parameters:
+        - name: theatre
+          in: body
+          description: The theatre to create
+          required: true
+          schema:
+            $ref: '#/definitions/TheatreInput'
+      responses:
+        201:
+          description: The created theatre
+          schema:
+            $ref: '#/definitions/Theatre'
+  /theatres/{theatre_id}:
+    get:
+      tags:
+        - Theatre management
+      summary: Get a theatre by ID
+      description: Returns the theatre with the specified ID
+      parameters:
+        - name: theatre_id
+          in: path
+          description: The ID of the theatre to retrieve
+          required: true
+          type: integer
+      responses:
+        200:
+          description: The theatre with the specified ID
+          schema:
+            $ref: '#/definitions/Theatre'
+        404:
+          description: Theatre not found
+    put:
+      tags:
+        - Theatre management
+      summary: Update a theatre by ID
+      description: Updates the theatre with the specified ID
+      parameters:
+        - name: theatre_id
+          in: path
+          description: The ID of the theatre to update
+          required: true
+          type: integer
+        - name: theatre
+          in: body
+          description: The updated theatre
+          required: true
+          schema:
+            $ref: '#/definitions/TheatreInput'
+      responses:
+        200:
+          description: The updated theatre
+          schema:
+            $ref: '#/definitions/Theatre'
+        404:
+          description: Theatre not found
+    delete:
+      tags:
+        - Theatre management
+      summary: Delete a theatre by ID
+      description: Deletes the theatre with the specified ID
+      parameters:
+        - name: theatre_id
+          in: path
+          description: The ID of the theatre to delete
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Theatre deleted successfully
+        404:
+          description: Theatre not found
+  /movies:
+    post:
+      tags:
+        - Movie management
+      summary: Create a new movie
+      description: Creates a new movie with the specified name
+      parameters:
+        - name: movie
+          in: body
+          description: The movie to create
+          required: true
+          schema:
+            $ref: '#/definitions/MovieInput'
+      responses:
+        201:
+          description: The created theatre
+          schema:
+            $ref: '#/definitions/Movie'
+  /movies/{movie_id}:
+    get:
+      tags:
+        - Movie management
+      summary: Get a theatre by ID
+      description: Returns the movie with the specified ID
+      parameters:
+        - name: movie_id
+          in: path
+          description: The ID of the movie to retrieve
+          required: true
+          type: integer
+      responses:
+        200:
+          description: The movie with the specified ID
+          schema:
+            $ref: '#/definitions/Movie'
+        404:
+          description: Theatre not found
+    put:
+      tags:
+        - Movie management
+      summary: Update a movie by ID
+      description: Updates the movie with the specified ID
+      parameters:
+        - name: movie_id
+          in: path
+          description: The ID of the movie to update
+          required: true
+          type: integer
+        - name: movie
+          in: body
+          description: The updated movie
+          required: true
+          schema:
+            $ref: '#/definitions/MovieInput'
+      responses:
+        200:
+          description: The updated theatre
+          schema:
+            $ref: '#/definitions/Movie'
+        404:
+          description: Theatre not found
+    delete:
+      tags:
+        - Movie management
+      summary: Delete a movie by ID
+      description: Deletes the movie with the specified ID
+      parameters:
+        - name: movie_id
+          in: path
+          description: The ID of the movie to delete
+          required: true
+          type: integer
+      responses:
+        204:
+          description: movie deleted successfully
+        404:
+          description: movie not found
+  /shows:
+    get:
+      tags:
+        - Show management
+      summary: Get all shows
+      description: Returns a list of all shows
+      responses:
+        200:
+          description: A list of shows
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Show'
+    post:
+      tags:
+        - Show management
+      summary: Create a new show
+      description: Creates a new show with the specified theatre ID, movie ID, start time, end time, and ticket price
+      parameters:
+        - name: show
+          in: body
+          description: The show to create
+          required: true
+          schema:
+            $ref: '#/definitions/ShowInput'
+      responses:
+        201:
+          description: The created show
+          schema:
+            $ref: '#/definitions/Show'
+  /shows/{show_id}:
+    get:
+      tags:
+        - Show management
+      summary: Get a show by ID
+      description: Returns the show with the specified ID
+      parameters:
+        - name: show_id
+          in: path
+          description: The ID of the show to retrieve
+          required: true
+          type: integer
+      responses:
+        200:
+          description: The show with the specified ID
+          schema:
+            $ref: '#/definitions/Show'
+        404:
+          description: Show not found
+    put:
+      tags:
+        - Show management
+      summary: Update a show by ID
+      description: Updates the show with the specified ID
+      parameters:
+        - name: show_id
+          in: path
+          description: The ID of the show to update
+          required: true
+          type: integer
+        - name: show
+          in: body
+          description: The updated show
+          required: true
+          schema:
+            $ref: '#/definitions/ShowInput'
+      responses:
+        200:
+          description: The updated show
+          schema:
+            $ref: '#/definitions/Show'
+        404:
+          description: Show not found
+    delete:
+      tags:
+        - Show management
+      summary: Delete a show by ID
+      description: Deletes the show with the specified ID
+      parameters:
+        - name: show_id
+          in: path
+          description: The ID of the show to delete
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Show deleted successfully
+        404:
+          description: Show not found
+  /bookings:
+    get:
+      tags:
+        - Booking management
+      summary: Get all bookings
+      description: Returns a list of all bookings
+      responses:
+        200:
+          description: A list of bookings
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Show'
+    post:
+      tags:
+        - Booking management
+      summary: Create a new booking
+      description: creating new booking
+      parameters:
+        - name: booking
+          in: body
+          description: The booking to create
+          required: true
+          schema:
+            $ref: '#/definitions/BookingInput'
+      responses:
+        201:
+          description: The created show
+          schema:
+            $ref: '#/definitions/Booking'
+  /bookings/{booking_id}:
+    get:
+      tags:
+        - Booking management
+      summary: Get a booking by ID
+      description: Returns the booking with the specified ID
+      parameters:
+        - name: booking_id
+          in: path
+          description: The ID of the booking to retrieve
+          required: true
+          type: integer
+      responses:
+        200:
+          description: The booking with the specified ID
+          schema:
+            $ref: '#/definitions/Booking'
+        404:
+          description: Show not found
+
+
+
+definitions:
+  User:
+    type: object
+    properties:
+      user_id:
+        type: integer
+      username:
+        type: string
+      email:
+        type: string
+    required:
+      - user_id
+      - username
+      - email
+  UserInput:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+      email:
+        type: string
+    required:
+      - username
+      - password
+      - email
+  Theatre:
+    type: object
+    properties:
+      theatre_id:
+        type: integer
+      name:
+        type: string
+      address:
+        type: string
+      capacity:
+        type: integer
+      image_url:
+        type: string
+    required:
+      - theatre_id
+      - name
+      - address
+      - capacity
+  TheatreInput:
+    type: object
+    properties:
+      name:
+        type: string
+      address:
+        type: string
+      capacity:
+        type: integer
+      image_url:
+        type: string
+    required:
+      - name
+      - address
+      - capacity
+  Movie:
+    type: object
+    properties:
+      movie_id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: integer
+      tags:
+        type: string
+      image_url:
+        type: string
+    required:
+      - theatre_id
+      - name
+      - address
+      - capacity
+  MovieInput:
+    type: object
+    properties:
+      movie_id:
+        type: integer
+      name:
+        type: string
+      rating:
+        type: integer
+      tags:
+        type: string
+      image_url:
+        type: string
+    required:
+      - name
+      - address
+      - capacity
+  Show:
+    type: object
+    properties:
+      show_id:
+        type: integer
+      theatre_id:
+        type: integer
+      movie_id:
+        type: integer
+      start_time:
+        type: string
+        format: date-time
+      end_time:
+        type: string
+        format: date-time
+      ticket_price:
+        type: number
+    required:
+      - show_id
+      - theatre_id
+      - movie_id
+      - start_time
+      - end_time
+      - ticket_price
+  ShowInput:
+    type: object
+    properties:
+      theatre_id:
+        type: integer
+      movie_id:
+        type: integer
+      start_time:
+        type: string
+        format: date-time
+      end_time:
+        type: string
+        format: date-time
+      ticket_price:
+        type: number
+    required:
+      - theatre_id
+      - movie_id
+      - start_time
+      - end_time
+      - ticket_price
+  Booking:
+    type: object
+    properties:
+      booking_id:
+        type: integer
+      show_id:
+        type: integer
+      user_id:
+        type: integer
+      booking_time:
+        type: string
+        format: date-time
+      num_tickets:
+        type: number
+    required:
+      - booking_id
+      - show_id
+      - booking_time
+      - user_id
+      - num_tickets
+  BookingInput:
+    type: object
+    properties:
+      booking_id:
+        type: integer
+      show_id:
+        type: integer
+      user_id:
+        type: integer
+      booking_time:
+        type: string
+        format: date-time
+      num_tickets:
+        type: number
+    required:
+      - booking_id
+      - show_id
+      - booking_time
+      - user_id
+      - num_tickets

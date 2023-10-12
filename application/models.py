@@ -1,6 +1,7 @@
 from .database import db
+from flask_security import UserMixin, RoleMixin
+from flask_security.utils import hash_password
 
-# User model
 class User(db.Model):
     __tablename__ = 'Users'
     
