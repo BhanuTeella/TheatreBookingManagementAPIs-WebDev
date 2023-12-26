@@ -1,71 +1,69 @@
 from .database import db
 from flask_security import UserMixin, RoleMixin
 from flask_security.utils import hash_password
+from sqlalchemy.sql import func
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'Users'
     
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String, unique=True)
-    password = db.Column(db.String)
-    email = db.Column(db.String, unique=True)
+    username = db.Column(db.String, unique=True, nullable=False)
+    password = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
+    role = db.Column(db.String, nullable=False)
 
-#Theatre model
-class Theatre(db.Model):
-    __tablename__ = 'Theatres'
+class Song(db.Model):
+    __tablename__ = 'Songs'
     
-    theatre_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String)
-    address = db.Column(db.String)
-    capacity = db.Column(db.Integer)
-    image_url = db.Column(db.String)
+    song_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    lyrics = db.Column(db.Text)
+    genre = db.Column(db.String)
+    duration = db.Column(db.Integer)
+    date_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    creator_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
+    song_file = db.Column(db.LargeBinary)
 
-    # one-to-many relationship between Theatre and Show models. one theatre can have many shows
-    shows = db.relationship('Show', back_populates='theatre')
-
-# Movie model
-class Movie(db.Model):
-    __tablename__ = 'Movies'
+class Album(db.Model):
+    __tablename__ = 'Albums'
     
-    movie_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String)
-    rating = db.Column(db.Float)
-    tags = db.Column(db.String)
-    image_url = db.Column(db.String)
+    album_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
+    artist = db.Column(db.String)
+    creator_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
 
-    # one-to-many relationship between Movie and Show models. one movie can be shown in many theatres
-    shows = db.relationship('Show', back_populates='movie')
-
-# Show model
-class Show(db.Model):
-    __tablename__ = 'Shows'
+class AlbumSong(db.Model):
+    __tablename__ = 'AlbumSongs'
     
-    show_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    theatre_id = db.Column(db.Integer, db.ForeignKey('Theatres.theatre_id'))
-    movie_id = db.Column(db.Integer, db.ForeignKey('Movies.movie_id'))
-    start_time = db.Column(db.DateTime)
-    end_time = db.Column(db.DateTime)
-    ticket_price = db.Column(db.Float)
+    album_id = db.Column(db.Integer, db.ForeignKey('Albums.album_id'), primary_key=True)
+    song_id = db.Column(db.Integer, db.ForeignKey('Songs.song_id'), primary_key=True)
 
-    # many-to-one relationship between Show and Theatre models. one theatre can have many shows
-    theatre = db.relationship('Theatre', back_populates='shows')
-
-    #  many-to-one relationship between Show and Movie models. one movie can be shown in many theatres
-    movie = db.relationship('Movie', back_populates='shows')
-
-# Define the Booking model
-class Booking(db.Model):
-    __tablename__ = 'Bookings'
+class Playlist(db.Model):
+    __tablename__ = 'Playlists'
     
-    booking_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    playlist_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
-    show_id = db.Column(db.Integer, db.ForeignKey('Shows.show_id'))
-    num_tickets = db.Column(db.Integer)
-    booking_time = db.Column(db.DateTime)
 
-    #  many-to-one relationship between Booking and User models. one user can have many bookings
-    user = db.relationship('User', backref='bookings')
+class PlaylistSong(db.Model):
+    __tablename__ = 'PlaylistSongs'
+    
+    playlist_id = db.Column(db.Integer, db.ForeignKey('Playlists.playlist_id'), primary_key=True)
+    song_id = db.Column(db.Integer, db.ForeignKey('Songs.song_id'), primary_key=True)
 
-    # many-to-one relationship between Booking and Show models. one show can have many bookings
-    show = db.relationship('Show', backref='bookings')
-    # back_populates vs backref: backpopulate 
+class Rating(db.Model):
+    __tablename__ = 'Ratings'
+    
+    rating_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    rating = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
+    song_id = db.Column(db.Integer, db.ForeignKey('Songs.song_id'))
+
+class Flag(db.Model):
+    __tablename__ = 'Flags'
+    
+    flag_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
+    song_id = db.Column(db.Integer, db.ForeignKey('Songs.song_id'))
+    album_id = db.Column(db.Integer, db.ForeignKey('Albums.album_id'))
+    

@@ -14,7 +14,7 @@ class Config(object):
 # This class sets the database directory and URI for a production environment
 class ProductionConfig(Config):
     SQLITE_DB_DIR = os.path.join(basedir,'../db_directory')
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(SQLITE_DB_DIR, 'theatre_shows_database.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(SQLITE_DB_DIR, 'music_streaming_app.db')
 
 # Define a local development configuration class that inherits from the base class
 # This class sets the database directory and URI for a local development environment
@@ -22,5 +22,5 @@ class ProductionConfig(Config):
 class LocalDevelopmentConfig(Config):
     DEBUG = True
     SQLITE_DB_DIR = os.path.join(basedir,'../db_directory')
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(SQLITE_DB_DIR, 'theatre_shows_database.db')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(SQLITE_DB_DIR, 'music_streaming_app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = True
