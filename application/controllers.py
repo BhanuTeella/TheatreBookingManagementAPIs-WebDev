@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, session
 from flask import current_app as app
-from application.models import User, Song, Album, AlbumSong, Playlist, PlaylistSong, Rating, SongFlag, AlbumFlag
+from application.models import User, Song, Album, AlbumSong, Playlist, PlaylistSong, Rating, SongFlag, AlbumFlag, Role
 from flask import request, redirect, url_for, render_template, flash
 from .models import User
 from flask import send_file, make_response
@@ -55,6 +55,13 @@ def register():
     # Create a new user instance using the User model
     user = User(username=username, email=email)
     user.set_password(password)
+    # Assign a default role to the user
+    default_role = Role.query.get(3)  # Get the role with id 3
+    if default_role:
+        user.roles.append(default_role)
+    else:
+        flash('Default role not found. Please contact the administrator.')
+        return redirect(url_for('register'))
     # Add the new user to the database
     db.session.add(user)
     db.session.commit()
@@ -128,6 +135,39 @@ def get_song_file(song_id):
   else:
     return {'message': 'Song not found'}, 404
 
+@app.route('/creator_account')
+def creator_account():
+  user_id = session['user_id']
+  user = User.query.get(user_id)
+  if 'creator' not in [role.name for role in user.roles]:
+    return render_template('register_as_creator.html')
+  else:
+    songs = Song.query.filter_by(creator_id=user_id).all()
+    if songs:
+      albums = Album.query.filter_by(creator_id=user_id).all()
+      ratings = [song.rating for song in songs]
+      return render_template('creator_dashboard.html', songs=songs, albums=albums, ratings=ratings)
+    else:
+      return render_template('start_creating.html')
+    
+
+@app.route('/become_creator', methods=['POST'])
+def become_creator():
+  user_id = session['user_id']
+  user = User.query.get(user_id)
+  creator_role = Role.query.filter_by(name='creator').first()
+  user.roles.append(creator_role)
+  db.session.commit()
+  return redirect(url_for('creator_account'))
+
+
+@app.route('/upload_song', methods=['GET', 'POST'])
+def upload_song():
+  if request.method == 'POST':
+    # Handle song upload
+    pass
+  return render_template('upload_song.html')
+
 
 @app.route('/test_models')
 def test_models():
@@ -138,5 +178,4 @@ def test_models():
     playlists = Playlist.query.all()
     playlist_songs = PlaylistSong.query.all()
     ratings = Rating.query.all()
-    #flags = Flag.query.all()
-    return render_template('test_models.html', users=users, songs=songs, albums=albums, album_songs=album_songs, playlists=playlists, playlist_songs=playlist_songs, ratings=ratings, flags=flags)
+    return render_template('test_models.html', users=users, songs=songs, albums=albums, album_songs=album_songs, playlists=playlists, playlist_songs=playlist_songs, ratings=ratings)
