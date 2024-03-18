@@ -6,7 +6,12 @@ from .models import User
 from flask import send_file, make_response
 import io
 from .models import db
-
+from flask_login import current_user
+from datetime import datetime, timezone
+from werkzeug.utils import secure_filename
+import os
+import uuid
+import re
 
 @app.route('/')
 def home():
@@ -164,9 +169,52 @@ def become_creator():
 @app.route('/upload_song', methods=['GET', 'POST'])
 def upload_song():
   if request.method == 'POST':
-    # Handle song upload
-    pass
-  return render_template('upload_song.html')
+    # Get song details from the form
+    name = request.form['name']
+    lyrics = request.form['lyrics']
+    genre = request.form['genre']
+    duration = request.form['duration']
+    song_file = request.files['song_file']
+
+    # Perform validation
+    if not name or not lyrics or not genre or not duration or not song_file:
+      flash('All fields are required.')
+      return redirect(request.url)
+
+    # Check the file format
+    if not '.' in song_file.filename or not song_file.filename.rsplit('.', 1)[1].lower() in ['mp3']:
+      flash('Invalid file format. Only MP3 files are allowed.')
+      return redirect(request.url)
+
+    # Sanitize the song name to use as a filename
+    safe_name = re.sub(r'[\\/*?:"<>|]', '', name)  # Remove invalid characters
+    safe_name = safe_name.replace(' ', '_')  # Replace spaces with underscores
+
+    # Append a unique identifier to the filename to avoid overwriting files
+    ext = song_file.filename.rsplit('.', 1)[1].lower()  # Get the file extension
+    filename = f"{safe_name}_{uuid.uuid4().hex}.{ext}"
+
+    # Ensure the directory exists
+    directory = 'path/to/save/files'
+    os.makedirs(directory, exist_ok=True)
+
+    # Save the file
+    song_file.save(os.path.join(directory, filename))
+
+    # Create a new song instance using the Song model
+    song = Song(name=name, lyrics=lyrics, genre=genre, duration=duration, 
+          date_created=datetime.now(timezone.utc), creator_id=current_user.user_id, 
+          song_file=filename)
+    # Add the new song to the database
+    db.session.add(song)
+    db.session.commit()
+
+    flash('Song uploaded successfully.')
+    return redirect(url_for('upload_song'))
+  genres = Song.query.with_entities(Song.genre).distinct().all()
+  genres = [genre[0] for genre in genres]
+
+  return render_template('upload_song.html',genres=genres)
 
 
 @app.route('/test_models')

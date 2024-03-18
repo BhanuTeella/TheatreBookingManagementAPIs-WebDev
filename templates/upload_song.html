@@ -12,14 +12,46 @@
         <form action="/upload_song" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="name" class="form-label">Song Name:</label>
-                <input type="text" id="name" name="name" class="form-control">
+                <input type="text" id="name" name="name" class="form-control" required>
             </div>
             <div class="mb-3">
-                <label for="file" class="form-label">Upload File:</label>
-                <input type="file" id="file" name="file" class="form-control">
+                <label for="lyrics" class="form-label">Lyrics:</label>
+                <textarea id="lyrics" name="lyrics" class="form-control" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre:</label>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="genreDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        Select Genre
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="genreDropdown">
+                        {% for genre in genres %}
+                            <li><a class="dropdown-item genre-item" href="#">{{ genre }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <input type="hidden" id="genre" name="genre">
+            </div>
+
+
+            <div class="mb-3">
+                <label for="duration" class="form-label">Duration:</label>
+                <input type="number" id="duration" name="duration" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="song_file" class="form-label">Upload File:</label>
+                <input type="file" id="song_file" name="song_file" class="form-control" accept=".mp3" required>
             </div>
             <input type="submit" value="Upload" class="btn btn-primary">
         </form>
     </div>
+    <script>
+        document.querySelectorAll('.genre-item').forEach(item => {
+            item.addEventListener('click', event => {
+                document.getElementById('genreDropdown').innerText = event.target.innerText;
+                document.getElementById('genre').value = event.target.innerText;
+            });
+        });
+    </script>
 </body>
 </html>
