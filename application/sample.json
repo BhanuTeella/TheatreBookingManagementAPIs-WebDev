@@ -1,0 +1,906 @@
+[
+    {
+        "song_id": 1,
+        "name": "Tum Hi Ho",
+        "lyrics": "Hum tere bin ab reh nahi sakte...",
+        "genre": "Dance Numbers",
+        "duration": 240,
+        "date_created": "2022-01-01T00:00:00Z",
+        "creator_id": 1
+    },
+    {
+        "song_id": 2,
+        "name": "Dil Se Re",
+        "lyrics": "Dil se re, dil se re...",
+        "genre": "Romantic Songs",
+        "duration": 300,
+        "date_created": "2022-01-02T00:00:00Z",
+        "creator_id": 23
+    },
+    {
+        "song_id": 3,
+        "name": "Roobaroo",
+        "lyrics": "Roobaroo roshni...",
+        "genre": "Pop",
+        "duration": 210,
+        "date_created": "2022-01-03T00:00:00Z",
+        "creator_id": 12
+    },
+    {
+        "song_id": 4,
+        "name": "Chaiyya Chaiyya",
+        "lyrics": "Chaiyya chaiyya chaiyya chaiyya...",
+        "genre": "Dance Numbers",
+        "duration": 250,
+        "date_created": "2022-01-04T00:00:00Z",
+        "creator_id": 7
+    },
+    {
+        "song_id": 5,
+        "name": "Kal Ho Naa Ho",
+        "lyrics": "Har ghadi badal rahi hai roop zindagi...",
+        "genre": "Romantic Songs",
+        "duration": 320,
+        "date_created": "2022-01-05T00:00:00Z",
+        "creator_id": 15
+    },
+    {
+        "song_id": 6,
+        "name": "Jai Ho",
+        "lyrics": "Jai ho, jai ho, jai ho, jai ho...",
+        "genre": "Pop",
+        "duration": 220,
+        "date_created": "2022-01-06T00:00:00Z",
+        "creator_id": 9
+    },
+    {
+        "song_id": 7,
+        "name": "Dhoom Machale",
+        "lyrics": "Dhoom machale, dhoom machale dhoom...",
+        "genre": "Dance Numbers",
+        "duration": 230,
+        "date_created": "2022-01-07T00:00:00Z",
+        "creator_id": 18
+    },
+    {
+        "song_id": 8,
+        "name": "Tum Se Hi",
+        "lyrics": "Tum se hi din hota hai...",
+        "genre": "Romantic Songs",
+        "duration": 310,
+        "date_created": "2022-01-08T00:00:00Z",
+        "creator_id": 4
+    },
+    {
+        "song_id": 9,
+        "name": "Badtameez Dil",
+        "lyrics": "Badtameez dil, badtameez dil, badtameez dil...",
+        "genre": "Pop",
+        "duration": 200,
+        "date_created": "2022-01-09T00:00:00Z",
+        "creator_id": 20
+    },
+    {
+        "song_id": 10,
+        "name": "Munni Badnaam Hui",
+        "lyrics": "Munni badnaam hui darling tere liye...",
+        "genre": "Dance Numbers",
+        "duration": 260,
+        "date_created": "2022-01-10T00:00:00Z",
+        "creator_id": 11
+    },
+
+    {
+        "song_id": 11,
+        "name": "Rock On",
+        "lyrics": "Dil kya kehta hai mera, kya main bataun...",
+        "genre": "Rock",
+        "duration": 250,
+        "date_created": "2022-01-11T00:00:00Z",
+        "creator_id": 5
+    },
+    {
+        "song_id": 12,
+        "name": "Tum Itna Jo Muskura Rahe Ho",
+        "lyrics": "Tum itna jo muskura rahe ho, kya gham hai jisko chhupa rahe ho...",
+        "genre": "Classical",
+        "duration": 300,
+        "date_created": "2022-01-12T00:00:00Z",
+        "creator_id": 6
+    },
+    {
+        "song_id": 13,
+        "name": "Dum Maro Dum",
+        "lyrics": "Dum maro dum, mit jaaye gham...",
+        "genre": "Folk",
+        "duration": 210,
+        "date_created": "2022-01-13T00:00:00Z",
+        "creator_id": 7
+    },
+    {
+        "song_id": 14,
+        "name": "Blue Eyes",
+        "lyrics": "Blue eyes, hypnotise teri kardi ai mennu...",
+        "genre": "Rap",
+        "duration": 220,
+        "date_created": "2022-01-14T00:00:00Z",
+        "creator_id": 8
+    },
+    {
+        "song_id": 15,
+        "name": "Sadda Haq",
+        "lyrics": "Sadda haq, aithe rakh...",
+        "genre": "Rock",
+        "duration": 230,
+        "date_created": "2022-01-15T00:00:00Z",
+        "creator_id": 9
+    },
+    {
+        "song_id": 16,
+        "name": "Lag Ja Gale",
+        "lyrics": "Lag ja gale ki phir ye haseen raat ho na ho...",
+        "genre": "Classical",
+        "duration": 240,
+        "date_created": "2022-01-16T00:00:00Z",
+        "creator_id": 10
+    },
+    {
+        "song_id": 17,
+        "name": "Morni Banke",
+        "lyrics": "Morni banke, morni banke...",
+        "genre": "Folk",
+        "duration": 250,
+        "date_created": "2022-01-17T00:00:00Z",
+        "creator_id": 11
+    },
+    {
+        "song_id": 18,
+        "name": "Swag Mera Desi",
+        "lyrics": "Swag mera desi, swag swag mera desi...",
+        "genre": "Rap",
+        "duration": 260,
+        "date_created": "2022-01-18T00:00:00Z",
+        "creator_id": 12
+    },
+    {
+        "song_id": 19,
+        "name": "Socha Hai",
+        "lyrics": "Socha hai yeh ke tumhe rasta bhulaye...",
+        "genre": "Rock",
+        "duration": 270,
+        "date_created": "2022-01-19T00:00:00Z",
+        "creator_id": 13
+    },
+    {
+        "song_id": 20,
+        "name": "Piya Tose Naina Laage Re",
+        "lyrics": "Piya tose naina laage re, naina laage re...",
+        "genre": "Classical",
+        "duration": 280,
+        "date_created": "2022-01-20T00:00:00Z",
+        "creator_id": 14
+    },
+    {
+        "song_id": 21,
+        "name": "Bulla Ki Jaana",
+        "lyrics": "Bulla ki jaana main kaun... Bulla ki jaana main kaun... Bulla ki jaana main kaun...",
+        "genre": "Sufi",
+        "duration": 300,
+        "date_created": "2022-01-21T00:00:00Z",
+        "creator_id": 15
+    },
+    {
+        "song_id": 22,
+        "name": "Maa Tujhe Salaam",
+        "lyrics": "Maa tujhe salaam... Maa tujhe salaam... Vande maataram, vande maataram...",
+        "genre": "Patriotic",
+        "duration": 310,
+        "date_created": "2022-01-22T00:00:00Z",
+        "creator_id": 16
+    },
+    {
+        "song_id": 23,
+        "name": "Kun Faya Kun",
+        "lyrics": "Kun faya kun... Kun faya kun... Faya kun, faya kun, faya kun...",
+        "genre": "Sufi",
+        "duration": 320,
+        "date_created": "2022-01-23T00:00:00Z",
+        "creator_id": 17
+    },
+    {
+        "song_id": 24,
+        "name": "Ae Watan",
+        "lyrics": "Ae watan, watan mere, abaad rahe tu... Ae watan, watan mere, abaad rahe tu...",
+        "genre": "Patriotic",
+        "duration": 330,
+        "date_created": "2022-01-24T00:00:00Z",
+        "creator_id": 18
+    },
+    {
+        "song_id": 25,
+        "name": "Piya Haji Ali",
+        "lyrics": "Piya Haji Ali... Piya Haji Ali... Piya Haji Ali, piya ho... Piya Haji Ali, piya ho...",
+        "genre": "Sufi",
+        "duration": 340,
+        "date_created": "2022-01-25T00:00:00Z",
+        "creator_id": 19
+    },
+    {
+        "song_id": 26,
+        "name": "Teri Mitti",
+        "lyrics": "Teri mitti mein mil jaawaan... Gul banke main khil jaawaan... Teri mitti mein mil jaawaan...",
+        "genre": "Patriotic",
+        "duration": 350,
+        "date_created": "2022-01-26T00:00:00Z",
+        "creator_id": 20
+    },
+    {
+        "song_id": 27,
+        "name": "Arziyan",
+        "lyrics": "Arziyan saari main... Chehre pe likh ke laaya hoon... Arziyan saari main... Chehre pe likh ke laaya hoon...",
+        "genre": "Sufi",
+        "duration": 360,
+        "date_created": "2022-01-27T00:00:00Z",
+        "creator_id": 21
+    },
+    {
+        "song_id": 28,
+        "name": "Rang De Basanti",
+        "lyrics": "Rang de basanti... Rang de basanti... Rang de basanti, rang de, rang de...",
+        "genre": "Patriotic",
+        "duration": 370,
+        "date_created": "2022-01-28T00:00:00Z",
+        "creator_id": 22
+    },
+    {
+        "song_id": 29,
+        "name": "Mann Ki Lagan",
+        "lyrics": "Mann ki lagan... Mann ki lagan... Mann ki lagan, mann ki lagan, mann ki lagan...",
+        "genre": "Sufi",
+        "duration": 380,
+        "date_created": "2022-01-29T00:00:00Z",
+        "creator_id": 23
+    },
+    {
+        "song_id": 30,
+        "name": "Aisa Des Hai Mera",
+        "lyrics": "Aisa des hai mera... Aisa des hai mera... Aisa des hai mera, aisa des hai mera...",
+        "genre": "Patriotic",
+        "duration": 390,
+        "date_created": "2022-01-30T00:00:00Z",
+        "creator_id": 24
+    },
+    {
+        "song_id": 31,
+        "name": "Tere Bina",
+        "lyrics": "Tere bina beswaadi... Tere bina beswaadi ratiyaan, oh sajna... Tere bina beswaadi ratiyaan...",
+        "genre": "Sufi",
+        "duration": 400,
+        "date_created": "2022-01-31T00:00:00Z",
+        "creator_id": 25
+    },
+    {
+        "song_id": 32,
+        "name": "Chak De India",
+        "lyrics": "Chak de India... Chak de India... Chak de India, chak de, chak de",
+        "genre": "Patriotic",
+        "duration": 390,
+        "date_created": "2022-01-30T00:00:00Z",
+        "creator_id": 24
+    },
+    {
+        "song_id": 33,
+        "name": "Tum Hi Ho",
+        "lyrics": "Hum tere bin ab reh nahi sakte, Tere bina kya wajood mera...",
+        "genre": "Romantic",
+        "duration": 260,
+        "date_created": "2022-02-01T00:00:00Z",
+        "creator_id": 1
+    },
+    {
+        "song_id": 34,
+        "name": "Dil Se Re",
+        "lyrics": "Dil se re, dil se re... Dooba dooba rehta hoon aankhon me teri...",
+        "genre": "Romantic",
+        "duration": 270,
+        "date_created": "2022-02-02T00:00:00Z",
+        "creator_id": 2
+    },
+    {
+        "song_id": 35,
+        "name": "Pee Loon",
+        "lyrics": "Pee loon tere neelay neelay nainon se shabnam, Pee loon tere geelay geelay hoto ki sargam...",
+        "genre": "Romantic",
+        "duration": 280,
+        "date_created": "2022-02-03T00:00:00Z",
+        "creator_id": 3
+    },
+    {
+        "song_id": 36,
+        "name": "Tum Se Hi",
+        "lyrics": "Tum se hi din hota hai, Surmayi shaam aati hai, Tum se hi, tum se hi...",
+        "genre": "Romantic",
+        "duration": 290,
+        "date_created": "2022-02-04T00:00:00Z",
+        "creator_id": 4
+    },
+    {
+        "song_id": 37,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Meri rahe tere tak hai, Tujhpe hi toh mera haq hai, Ishq mera tu beshaq hai...",
+        "genre": "Romantic",
+        "duration": 300,
+        "date_created": "2022-02-05T00:00:00Z",
+        "creator_id": 5
+    },
+    {
+        "song_id": 38,
+        "name": "Tum Mile",
+        "lyrics": "Tum mile, toh lamhein tham gaye, Tum mile, toh saare gum gaye...",
+        "genre": "Romantic",
+        "duration": 310,
+        "date_created": "2022-02-06T00:00:00Z",
+        "creator_id": 6
+    },
+    {
+        "song_id": 39,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Meri rahe tere tak hai, Tujhpe hi toh mera haq hai, Ishq mera tu beshaq hai...",
+        "genre": "Romantic",
+        "duration": 320,
+        "date_created": "2022-02-07T00:00:00Z",
+        "creator_id": 7
+    },
+    {
+        "song_id": 40,
+        "name": "Tum Ho",
+        "lyrics": "Tum ho paas mere, Saath mere ho tum yun, Jitna mehsus karoon tumko, Utna hi paa bhi loon...",
+        "genre": "Romantic",
+        "duration": 330,
+        "date_created": "2022-02-08T00:00:00Z",
+        "creator_id": 8
+    },
+    {
+        "song_id": 41,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Meri rahe tere tak hai, Tujhpe hi toh mera haq hai, Ishq mera tu beshaq hai...",
+        "genre": "Romantic",
+        "duration": 340,
+        "date_created": "2022-02-09T00:00:00Z",
+        "creator_id": 9
+    },
+    {
+        "song_id": 42,
+        "name": "Tum Hi Aana",
+        "lyrics": "Tum hi aana, Marjaavaan... Tum hi aana, Marjaavaan...",
+        "genre": "Romantic",
+        "duration": 350,
+        "date_created": "2022-02-10T00:00:00Z",
+        "creator_id": 10
+    },
+    {
+        "song_id": 43,
+        "name": "Agar Tum Saath Ho",
+        "lyrics": "Agar tum saath ho... Agar tum saath ho...",
+        "genre": "Romantic",
+        "duration": 360,
+        "date_created": "2022-02-11T00:00:00Z",
+        "creator_id": 11
+    },
+    {
+        "song_id": 44,
+        "name": "Tum Hi Ho",
+        "lyrics": "Tum hi ho... Tum hi ho... Tere liye hi jiya main...",
+        "genre": "Romantic",
+        "duration": 370,
+        "date_created": "2022-02-12T00:00:00Z",
+        "creator_id": 12
+    },
+    {
+        "song_id": 45,
+        "name": "Channa Mereya",
+        "lyrics": "Channa mereya mereya... Channa mereya mereya beliya...",
+        "genre": "Romantic",
+        "duration": 380,
+        "date_created": "2022-02-13T00:00:00Z",
+        "creator_id": 13
+    },
+    {
+        "song_id": 46,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Tera ban jaunga... Tera ban jaunga...",
+        "genre": "Romantic",
+        "duration": 390,
+        "date_created": "2022-02-14T00:00:00Z",
+        "creator_id": 14
+    },
+    {
+        "song_id": 47,
+        "name": "Tum Se Hi",
+        "lyrics": "Tum se hi din hota hai... Tum se hi din hota hai...",
+        "genre": "Romantic",
+        "duration": 400,
+        "date_created": "2022-02-15T00:00:00Z",
+        "creator_id": 15
+    },
+    {
+        "song_id": 48,
+        "name": "Tum Mile",
+        "lyrics": "Tum mile, toh lamhein tham gaye... Tum mile, toh saare gum gaye...",
+        "genre": "Romantic",
+        "duration": 410,
+        "date_created": "2022-02-16T00:00:00Z",
+        "creator_id": 16
+    },
+    {
+        "song_id": 49,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Tera ban jaunga... Tera ban jaunga...",
+        "genre": "Romantic",
+        "duration": 420,
+        "date_created": "2022-02-17T00:00:00Z",
+        "creator_id": 17
+    },
+    {
+        "song_id": 50,
+        "name": "Tum Ho",
+        "lyrics": "Tum ho paas mere... Tum ho paas mere...",
+        "genre": "Romantic",
+        "duration": 430,
+        "date_created": "2022-02-18T00:00:00Z",
+        "creator_id": 18
+    },
+    {
+        "song_id": 51,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Tera ban jaunga... Tera ban jaunga...",
+        "genre": "Romantic",
+        "duration": 440,
+        "date_created": "2022-02-19T00:00:00Z",
+        "creator_id": 19
+    },
+    {
+        "song_id": 52,
+        "name": "Tum Hi Aana",
+        "lyrics": "Tum hi aana... Tum hi aana...",
+        "genre": "Romantic",
+        "duration": 450,
+        "date_created": "2022-02-20T00:00:00Z",
+        "creator_id": 20
+    },
+    {
+        "song_id": 53,
+        "name": "Mere Bina",
+        "lyrics": "Mere bina main, rehne laga hoon... Teri hawaon me, behne laga hoon...",
+        "genre": "Romantic",
+        "duration": 460,
+        "date_created": "2022-02-21T00:00:00Z",
+        "creator_id": 21
+    },
+    {
+        "song_id": 54,
+        "name": "Tum Jo Aaye",
+        "lyrics": "Tum jo aaye, zindagi me baat ban gayi... Ishq mazhab, ishq meri zaat ban gayi...",
+        "genre": "Romantic",
+        "duration": 470,
+        "date_created": "2022-02-22T00:00:00Z",
+        "creator_id": 22
+    },
+    {
+        "song_id": 55,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Tera ban jaunga... Tera ban jaunga...",
+        "genre": "Romantic",
+        "duration": 480,
+        "date_created": "2022-02-23T00:00:00Z",
+        "creator_id": 23
+    },
+    {
+        "song_id": 56,
+        "name": "Tum Se Hi",
+        "lyrics": "Tum se hi din hota hai... Tum se hi din hota hai...",
+        "genre": "Romantic",
+        "duration": 490,
+        "date_created": "2022-02-24T00:00:00Z",
+        "creator_id": 24
+    },
+    {
+        "song_id": 57,
+        "name": "Tum Mile",
+        "lyrics": "Tum mile, toh lamhein tham gaye... Tum mile, toh saare gum gaye...",
+        "genre": "Romantic",
+        "duration": 500,
+        "date_created": "2022-02-25T00:00:00Z",
+        "creator_id": 25
+    },
+    {
+        "song_id": 58,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Tera ban jaunga... Tera ban jaunga...",
+        "genre": "Romantic",
+        "duration": 510,
+        "date_created": "2022-02-26T00:00:00Z",
+        "creator_id": 26
+    },
+    {
+        "song_id": 59,
+        "name": "Tum Ho",
+        "lyrics": "Tum ho paas mere... Tum ho paas mere...",
+        "genre": "Romantic",
+        "duration": 520,
+        "date_created": "2022-02-27T00:00:00Z",
+        "creator_id": 27
+    },
+    {
+        "song_id": 60,
+        "name": "Tera Ban Jaunga",
+        "lyrics": "Tera ban jaunga... Tera ban jaunga...",
+        "genre": "Romantic",
+        "duration": 530,
+        "date_created": "2022-02-28T00:00:00Z",
+        "creator_id": 28
+    },
+    {
+        "song_id": 61,
+        "name": "Tum Hi Aana",
+        "lyrics": "Tum hi aana... Tum hi aana...",
+        "genre": "Romantic",
+        "duration": 540,
+        "date_created": "2022-03-01T00:00:00Z",
+        "creator_id": 29
+    },
+    {
+        "song_id": 62,
+        "name": "Agar Tum Saath Ho",
+        "lyrics": "Agar tum saath ho... Agar tum saath ho...",
+        "genre": "Romantic",
+        "duration": 550,
+        "date_created": "2022-03-02T00:00:00Z",
+        "creator_id": 30
+    },
+    {
+        "song_id": 63,
+        "name": "Jai Ho",
+        "lyrics": "Jai ho, jai ho, aaja, aaja jind shamiyane ke tale...",
+        "genre": "Pop",
+        "duration": 260,
+        "date_created": "2022-03-03T00:00:00Z",
+        "creator_id": 31
+    },
+    {
+        "song_id": 64,
+        "name": "Rock On",
+        "lyrics": "Dil kya kehta hai mera, kya main bataun...",
+        "genre": "Rock",
+        "duration": 270,
+        "date_created": "2022-03-04T00:00:00Z",
+        "creator_id": 32
+    },
+    {
+        "song_id": 65,
+        "name": "Dum Maro Dum",
+        "lyrics": "Dum maro dum, mit jaaye gham, bolo subah shaam, Hare Krishna Hare Ram...",
+        "genre": "Folk",
+        "duration": 280,
+        "date_created": "2022-03-05T00:00:00Z",
+        "creator_id": 33
+    },
+    {
+        "song_id": 66,
+        "name": "Blue Eyes",
+        "lyrics": "Blue eyes, hypnotise teri kardi a mennu...",
+        "genre": "Rap",
+        "duration": 290,
+        "date_created": "2022-03-06T00:00:00Z",
+        "creator_id": 34
+    },
+    {
+        "song_id": 67,
+        "name": "Chak De India",
+        "lyrics": "Kuchh kariye, kuchh kariye, nas nas meri khole...",
+        "genre": "Pop",
+        "duration": 300,
+        "date_created": "2022-03-07T00:00:00Z",
+        "creator_id": 35
+    },
+    {
+        "song_id": 68,
+        "name": "Sadda Haq",
+        "lyrics": "Sadda haq, aithe rakh, sadda haq, aithe rakh...",
+        "genre": "Rock",
+        "duration": 310,
+        "date_created": "2022-03-08T00:00:00Z",
+        "creator_id": 36
+    },
+    {
+        "song_id": 69,
+        "name": "Mast Qalandar",
+        "lyrics": "Dama dam mast qalandar, ali dam dam de andar...",
+        "genre": "Folk",
+        "duration": 320,
+        "date_created": "2022-03-09T00:00:00Z",
+        "creator_id": 37
+    },
+    {
+        "song_id": 70,
+        "name": "Swag Mera Desi",
+        "lyrics": "Swag mera desi, swag swag mera desi hai...",
+        "genre": "Rap",
+        "duration": 330,
+        "date_created": "2022-03-10T00:00:00Z",
+        "creator_id": 38
+    },
+    {
+        "song_id": 71,
+        "name": "Badtameez Dil",
+        "lyrics": "Badtameez dil, badtameez dil, badtameez dil, mane na...",
+        "genre": "Pop",
+        "duration": 340,
+        "date_created": "2022-03-11T00:00:00Z",
+        "creator_id": 39
+    },
+    {
+        "song_id": 72,
+        "name": "Socha Hai",
+        "lyrics": "Kya tumne kabhi kisi se pyaar kiya, kya tumne kabhi kisi ko dil diya...",
+        "genre": "Rock",
+        "duration": 350,
+        "date_created": "2022-03-12T00:00:00Z",
+        "creator_id": 40
+    },
+    {
+        "song_id": 73,
+        "name": "Lose Yourself",
+        "lyrics": "You better lose yourself in the music, the moment...",
+        "genre": "Rap",
+        "duration": 360,
+        "date_created": "2022-03-13T00:00:00Z",
+        "creator_id": 41
+    },
+    {
+        "song_id": 74,
+        "name": "Bohemian Rhapsody",
+        "lyrics": "Is this the real life? Is this just fantasy?...",
+        "genre": "Rock",
+        "duration": 370,
+        "date_created": "2022-03-14T00:00:00Z",
+        "creator_id": 42
+    },
+    {
+        "song_id": 75,
+        "name": "Viva la Vida",
+        "lyrics": "I used to rule the world, Seas would rise when I gave the word...",
+        "genre": "Pop",
+        "duration": 380,
+        "date_created": "2022-03-15T00:00:00Z",
+        "creator_id": 43
+    },
+    {
+        "song_id": 76,
+        "name": "Hotel California",
+        "lyrics": "On a dark desert highway, cool wind in my hair...",
+        "genre": "Rock",
+        "duration": 390,
+        "date_created": "2022-03-16T00:00:00Z",
+        "creator_id": 44
+    },
+    {
+        "song_id": 77,
+        "name": "Smells Like Teen Spirit",
+        "lyrics": "Load up on guns, bring your friends...",
+        "genre": "Rock",
+        "duration": 400,
+        "date_created": "2022-03-17T00:00:00Z",
+        "creator_id": 45
+    },
+    {
+        "song_id": 78,
+        "name": "Imagine",
+        "lyrics": "Imagine there's no heaven, It's easy if you try...",
+        "genre": "Pop",
+        "duration": 410,
+        "date_created": "2022-03-18T00:00:00Z",
+        "creator_id": 46
+    },
+    {
+        "song_id": 79,
+        "name": "One",
+        "lyrics": "Is it getting better, Or do you feel the same...",
+        "genre": "Rock",
+        "duration": 420,
+        "date_created": "2022-03-19T00:00:00Z",
+        "creator_id": 47
+    },
+    {
+        "song_id": 80,
+        "name": "Billie Jean",
+        "lyrics": "She was more like a beauty queen from a movie scene...",
+        "genre": "Pop",
+        "duration": 430,
+        "date_created": "2022-03-20T00:00:00Z",
+        "creator_id": 48
+    },
+    {
+        "song_id": 81,
+        "name": "Stairway to Heaven",
+        "lyrics": "There's a lady who's sure all that glitters is gold...",
+        "genre": "Rock",
+        "duration": 440,
+        "date_created": "2022-03-21T00:00:00Z",
+        "creator_id": 49
+    },
+    {
+        "song_id": 82,
+        "name": "In the End",
+        "lyrics": "It starts with one thing, I don't know why...",
+        "genre": "Rap",
+        "duration": 450,
+        "date_created": "2022-03-22T00:00:00Z",
+        "creator_id": 50
+    },
+    {
+        "song_id": 83,
+        "name": "Sweet Child O' Mine",
+        "lyrics": "She's got a smile that it seems to me...",
+        "genre": "Rock",
+        "duration": 460,
+        "date_created": "2022-03-23T00:00:00Z",
+        "creator_id": 51
+    },
+    {
+        "song_id": 84,
+        "name": "Thriller",
+        "lyrics": "It's close to midnight and something evil's lurking in the dark...",
+        "genre": "Pop",
+        "duration": 470,
+        "date_created": "2022-03-24T00:00:00Z",
+        "creator_id": 52
+    },
+    {
+        "song_id": 85,
+        "name": "Like a Rolling Stone",
+        "lyrics": "Once upon a time you dressed so fine...",
+        "genre": "Folk",
+        "duration": 480,
+        "date_created": "2022-03-25T00:00:00Z",
+        "creator_id": 53
+    },
+    {
+        "song_id": 86,
+        "name": "Lose Yourself",
+        "lyrics": "Yo, if you could just, for one minute...",
+        "genre": "Rap",
+        "duration": 490,
+        "date_created": "2022-03-26T00:00:00Z",
+        "creator_id": 54
+    },
+    {
+        "song_id": 87,
+        "name": "Hey Jude",
+        "lyrics": "Hey Jude, don't make it bad...",
+        "genre": "Pop",
+        "duration": 500,
+        "date_created": "2022-03-27T00:00:00Z",
+        "creator_id": 55
+    },
+    {
+        "song_id": 88,
+        "name": "I Can't Get No Satisfaction",
+        "lyrics": "I can't get no satisfaction...",
+        "genre": "Rock",
+        "duration": 510,
+        "date_created": "2022-03-28T00:00:00Z",
+        "creator_id": 56
+    },
+    {
+        "song_id": 89,
+        "name": "Blowin' in the Wind",
+        "lyrics": "How many roads must a man walk down...",
+        "genre": "Folk",
+        "duration": 520,
+        "date_created": "2022-03-29T00:00:00Z",
+        "creator_id": 57
+    },
+    {
+        "song_id": 90,
+        "name": "The Real Slim Shady",
+        "lyrics": "May I have your attention please...",
+        "genre": "Rap",
+        "duration": 530,
+        "date_created": "2022-03-30T00:00:00Z",
+        "creator_id": 58
+    },
+    {
+        "song_id": 91,
+        "name": "Let It Be",
+        "lyrics": "When I find myself in times of trouble...",
+        "genre": "Pop",
+        "duration": 540,
+        "date_created": "2022-03-31T00:00:00Z",
+        "creator_id": 59
+    },
+    {
+        "song_id": 92,
+        "name": "Back In Black",
+        "lyrics": "Back in black, I hit the sack...",
+        "genre": "Rock",
+        "duration": 550,
+        "date_created": "2022-04-01T00:00:00Z",
+        "creator_id": 60
+    },
+    {
+        "song_id": 93,
+        "name": "Purple Haze",
+        "lyrics": "Purple haze all in my brain...",
+        "genre": "Rock",
+        "duration": 560,
+        "date_created": "2022-04-02T00:00:00Z",
+        "creator_id": 61
+    },
+    {
+        "song_id": 94,
+        "name": "Bad Guy",
+        "lyrics": "White shirt now red, my bloody nose...",
+        "genre": "Pop",
+        "duration": 570,
+        "date_created": "2022-04-03T00:00:00Z",
+        "creator_id": 62
+    },
+    {
+        "song_id": 95,
+        "name": "The Times They Are a-Changin'",
+        "lyrics": "Come gather 'round people wherever you roam...",
+        "genre": "Folk",
+        "duration": 580,
+        "date_created": "2022-04-04T00:00:00Z",
+        "creator_id": 63
+    },
+    {
+        "song_id": 96,
+        "name": "God's Plan",
+        "lyrics": "Yeah they wishin' and wishin' and wishin' and wishin'...",
+        "genre": "Rap",
+        "duration": 590,
+        "date_created": "2022-04-05T00:00:00Z",
+        "creator_id": 64
+    },
+    {
+        "song_id": 97,
+        "name": "Yesterday",
+        "lyrics": "Yesterday, all my troubles seemed so far away...",
+        "genre": "Pop",
+        "duration": 600,
+        "date_created": "2022-04-06T00:00:00Z",
+        "creator_id": 65
+    },
+    {
+        "song_id": 98,
+        "name": "Whole Lotta Love",
+        "lyrics": "You need coolin', baby, I'm not foolin'...",
+        "genre": "Rock",
+        "duration": 610,
+        "date_created": "2022-04-07T00:00:00Z",
+        "creator_id": 66
+    },
+    {
+        "song_id": 99,
+        "name": "This Land Is Your Land",
+        "lyrics": "This land is your land, this land is my land...",
+        "genre": "Folk",
+        "duration": 620,
+        "date_created": "2022-04-08T00:00:00Z",
+        "creator_id": 67
+    },
+    {
+        "song_id": 100,
+        "name": "HUMBLE.",
+        "lyrics": "Nobody pray for me, It's been that day for me...",
+        "genre": "Rap",
+        "duration": 630,
+        "date_created": "2022-04-09T00:00:00Z",
+        "creator_id": 68
+    }
+]
+
+
+

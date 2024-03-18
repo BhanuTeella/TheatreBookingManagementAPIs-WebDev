@@ -9,6 +9,7 @@ class Config(object):
     SQLITE_DB_DIR = None
     SQLALCHEMY_DATABASE_URI = None
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY='your-secret-key'
 
 # Define a production configuration class that inherits from the base class
 # This class sets the database directory and URI for a production environment

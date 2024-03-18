@@ -7,7 +7,55 @@
   <h1>User List</h1>
   <ul>
     {% for user in users %}
-      <li>{{ user.username }}</li>
+      <li>User ID: {{ user.user_id }}, Username: {{ user.username }}, Email: {{ user.email }}</li>
+    {% endfor %}
+  </ul>
+  <h1>Song List</h1>
+  <ul>
+    {% for song in songs %}
+      <li>Song ID: {{ song.song_id }}, Name: {{ song.name }}, Lyrics: {{ song.lyrics }}, Genre: {{ song.genre }}, Duration: {{ song.duration }}, Date Created: {{ song.date_created }}, Creator ID: {{ song.creator_id }}</li>
+    {% endfor %}
+  </ul>
+
+  <h1>Album List</h1>
+  <ul>
+    {% for album in albums %}
+      <li>Album ID: {{ album.album_id }}, Name: {{ album.name }}</li>
+    {% endfor %}
+  </ul>
+
+  <h1>AlbumSong List</h1>
+  <ul>
+    {% for album_song in album_songs %}
+      <li>Album ID: {{ album_song.album_id }}, Song ID: {{ album_song.song_id }}</li>
+    {% endfor %}
+  </ul>
+
+  <h1>Playlist List</h1>
+  <ul>
+    {% for playlist in playlists %}
+      <li>{{ playlist.name }}</li>
+    {% endfor %}
+  </ul>
+
+  <h1>PlaylistSong List</h1>
+  <ul>
+    {% for playlist_song in playlist_songs %}
+      <li>Playlist ID: {{ playlist_song.playlist_id }}, Song ID: {{ playlist_song.song_id }}</li>
+    {% endfor %}
+  </ul>
+
+  <h1>Rating List</h1>
+  <ul>
+    {% for rating in ratings %}
+      <li>User ID: {{ rating.user_id }}, Song ID: {{ rating.song_id }}, Rating: {{ rating.rating }}</li>
+    {% endfor %}
+  </ul>
+
+  <h1>Flag List</h1>
+  <ul>
+    {% for flag in flags %}
+      <li>User ID: {{ flag.user_id }}, Song ID: {{ flag.song_id }}, Album ID: {{ flag.album_id }}</li>
     {% endfor %}
   </ul>
 

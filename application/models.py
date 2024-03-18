@@ -3,6 +3,19 @@ from flask_security import UserMixin, RoleMixin
 from flask_security.utils import hash_password
 from sqlalchemy.sql import func
 
+from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
+
+roles_users = db.Table('roles_users',
+    db.Column('user_id', db.Integer(), db.ForeignKey('Users.user_id')),
+    db.Column('role_id', db.Integer(), db.ForeignKey('Role.role_id')))
+
+class Role(RoleMixin, db.Model):
+    __tablename__ = 'Role'
+    
+    role_id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(40), unique=True)
+
 class User(UserMixin, db.Model):
     __tablename__ = 'Users'
     
@@ -10,7 +23,13 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
-    role = db.Column(db.String, nullable=False)
+    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 class Song(db.Model):
     __tablename__ = 'Songs'
@@ -22,7 +41,7 @@ class Song(db.Model):
     duration = db.Column(db.Integer)
     date_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     creator_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
-    song_file = db.Column(db.LargeBinary)
+    song_file_url = db.Column(db.String)
 
 class Album(db.Model):
     __tablename__ = 'Albums'
@@ -59,11 +78,17 @@ class Rating(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
     song_id = db.Column(db.Integer, db.ForeignKey('Songs.song_id'))
 
-class Flag(db.Model):
-    __tablename__ = 'Flags'
+class SongFlag(db.Model):
+    __tablename__ = 'SongFlags'
     
     flag_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
     song_id = db.Column(db.Integer, db.ForeignKey('Songs.song_id'))
-    album_id = db.Column(db.Integer, db.ForeignKey('Albums.album_id'))
+
+class AlbumFlag(db.Model):
+    __tablename__ = 'AlbumFlags'
     
+    flag_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
+    album_id = db.Column(db.Integer, db.ForeignKey('Albums.album_id'))
+
