@@ -7,14 +7,14 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Streaming App</a>
+        <a class="navbar-brand" href="/">Streaming App</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/login">User Login</a>
+                    <a class="nav-link" href="/login">User Login</a>
                 </li>
             </ul>
         </div>
@@ -25,14 +25,14 @@
                 <div class="card mt-5">
                     <div class="card-body">
                         <h2 class="text-center">Admin Login</h2>
-                        <form>
+                        <form action="/admin/login" method="post">
                             <div class="form-group">
                                 <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password">
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
                         </form>

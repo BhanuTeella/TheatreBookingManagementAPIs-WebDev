@@ -9,6 +9,10 @@ from .models import db
 
 
 @app.route('/')
+def home():
+  return render_template('index.html')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   if request.method == 'POST':
@@ -24,6 +28,22 @@ def login():
     else:
       flash('Invalid email or password.')
   return render_template('login.html')
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+  if request.method == 'POST':
+    email = request.form['email']
+    password = request.form['password']
+
+    user = User.query.filter_by(email=email).first()
+    if user and user.check_password(password) and 'admin' in [role.name for role in user.roles]:
+      login_user(user)
+      return redirect(url_for('admin_dashboard'))
+    else:
+      flash('Invalid email or password, or you are not an admin.')
+      return redirect(url_for('admin_login'))
+
+  return render_template('admin_login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

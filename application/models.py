@@ -41,7 +41,7 @@ class Song(db.Model):
     duration = db.Column(db.Integer)
     date_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
     creator_id = db.Column(db.Integer, db.ForeignKey('Users.user_id'))
-    song_file_url = db.Column(db.String)
+    song_file = db.Column(db.String)
 
 class Album(db.Model):
     __tablename__ = 'Albums'
