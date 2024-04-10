@@ -1,38 +1,26 @@
 from flask import Flask, request, render_template, session
 from flask import current_app as app
-from application.models import User, Song, Album, AlbumSong, Playlist, PlaylistSong, Rating, SongFlag, AlbumFlag, Role
+from application.models import User, Song, Album, AlbumSong, Playlist, PlaylistSong, SongRating,AlbumRating, SongFlag, AlbumFlag, Role
 from flask import request, redirect, url_for, render_template, flash
 from .models import User
 from flask import send_file, make_response
 import io
 from .models import db
-from flask_login import current_user
 from datetime import datetime, timezone
 from werkzeug.utils import secure_filename
 import os
 import uuid
 import re
+from flask_security import current_user
+from flask import redirect, url_for
+
+
 
 @app.route('/')
 def home():
   return render_template('index.html')
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-  if request.method == 'POST':
-    email = request.form['email']
-    password = request.form['password']
-    user = User.query.filter_by(email=email).first()
-    if user and user.check_password(password):
-      # Log the user in (add more functionality here)
-      flash('Logged in successfully.')
-      session['user_id'] = user.user_id
-      #redirect to user homepage with user_id
-      return redirect(url_for('index', user_id=user.user_id))
-    else:
-      flash('Invalid email or password.')
-  return render_template('login.html')
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
@@ -42,7 +30,6 @@ def admin_login():
 
     user = User.query.filter_by(email=email).first()
     if user and user.check_password(password) and 'admin' in [role.name for role in user.roles]:
-      login_user(user)
       return redirect(url_for('admin_dashboard'))
     else:
       flash('Invalid email or password, or you are not an admin.')
@@ -50,15 +37,17 @@ def admin_login():
 
   return render_template('admin_login.html')
 
-@app.route('/register', methods=['GET', 'POST'])
+'''@app.route('/register', methods=['GET', 'POST'])
 def register():
   if request.method == 'POST':
     # Get the user details from the form
     username = request.form['username']
     email = request.form['email']
     password = request.form['password']
+    # Generate a unique fs_uniquifier
+    fs_uniquifier = str(uuid.uuid4())
     # Create a new user instance using the User model
-    user = User(username=username, email=email)
+    user = User(username=username, email=email, fs_uniquifier=fs_uniquifier, active=1)  # Set active to True
     user.set_password(password)
     # Assign a default role to the user
     default_role = Role.query.get(3)  # Get the role with id 3
@@ -74,19 +63,22 @@ def register():
     # Log the user in (add more functionality here)
     flash('Registered successfully.')
     return redirect(url_for('login'))
-  return render_template('user_registration.html')
+  return render_template('user_registration.html')'''
 
 
-@app.route('/index/<int:user_id>')
-def index(user_id):
+@app.route('/index')
+def index():
+  user_id=current_user.id
   #recommend newest 12 songs
   recommended_songs = Song.query.order_by(
       Song.date_created.desc()).limit(12).all()
   genres = Song.query.with_entities(Song.genre).distinct().all()
   genres = [genre[0] for genre in genres]
+  playlists = Playlist.query.all()
+  albums = Album.query.all()
   return render_template('user_homepage.html',
                          recommended_songs=recommended_songs,
-                         genres=genres)
+                         genres=genres, playlists=playlists, albums=albums)
 
 
 @app.route('/genre/<string:genre_name>')
@@ -95,7 +87,7 @@ def genre(genre_name):
   songs = Song.query.filter_by(genre=genre_name).all()
   if not songs:
     return {'message': 'No songs found for this genre'}, 404
-  user_id = session['user_id']
+  user_id = current_user.id
   # Render the results page with the genre name and songs
   return render_template('songlist.html',
                          name=genre_name,
@@ -109,13 +101,13 @@ def search():
   search_term = request.args.get('q', '')
   # Fetch the songs that match the search term
   songs = Song.query.filter(Song.name.contains(search_term)).all()
-  user_id = session['user_id']
+  user_id = current_user.id
   # Render the songlist.html template with the search results
   return render_template('songlist.html',
                          name=search_term,
                          songs=songs,
                          user_id=user_id)
-
+'''
 
 @app.route('/songs/<int:song_id>')
 def song(song_id):
@@ -123,7 +115,7 @@ def song(song_id):
   song = Song.query.get(song_id)
   if song is None:
     return {'message': 'Song not found'}, 404
-  user_id = session['user_id']
+  user_id = current_user.id
   # Render the song page with the song details
   return render_template('song.html', song=song, user_id=user_id)
 
@@ -139,10 +131,10 @@ def get_song_file(song_id):
     return response
   else:
     return {'message': 'Song not found'}, 404
-
+'''
 @app.route('/creator_account')
 def creator_account():
-  user_id = session['user_id']
+  user_id = current_user.id
   user = User.query.get(user_id)
   if 'creator' not in [role.name for role in user.roles]:
     return render_template('register_as_creator.html')
@@ -158,7 +150,7 @@ def creator_account():
 
 @app.route('/become_creator', methods=['POST'])
 def become_creator():
-  user_id = session['user_id']
+  user_id = current_user.id
   user = User.query.get(user_id)
   creator_role = Role.query.filter_by(name='creator').first()
   user.roles.append(creator_role)
@@ -203,7 +195,7 @@ def upload_song():
 
     # Create a new song instance using the Song model
     song = Song(name=name, lyrics=lyrics, genre=genre, duration=duration, 
-          date_created=datetime.now(timezone.utc), creator_id=current_user.user_id, 
+          date_created=datetime.now(timezone.utc), creator_id=current_user.id, 
           song_file=filename)
     # Add the new song to the database
     db.session.add(song)
@@ -227,3 +219,34 @@ def test_models():
     playlist_songs = PlaylistSong.query.all()
     ratings = Rating.query.all()
     return render_template('test_models.html', users=users, songs=songs, albums=albums, album_songs=album_songs, playlists=playlists, playlist_songs=playlist_songs, ratings=ratings)
+
+
+'''@app.route('/login', methods=['GET', 'POST'])
+def login():
+  if request.method == 'POST':
+    print('inside post')  # Debug line  
+    email = request.form['email']
+    password = request.form['password']
+    print(f'Form data: {request.form}')  # Debug line
+    print(f'Request data: {request.data}')  # Debug line
+    print(f'Request JSON: {request.json}')  # Debug line
+
+
+    user = User.query.filter_by(email=email).first()
+    print(f'User: {user}')  # Debug line
+    if user:
+      print(f'Hashed password in DB: {user.password}')  # Debug line
+      print(f'Hashed provided password: {user.hash_password(password)}')  # Debug line
+      print(f'Password check: {user.check_password(password)}')  # Debug line
+    if user and user.check_password(password):
+      print(user.id)
+      print('logged in')
+      # Log the user in (add more functionality here)
+      flash('Logged in successfully.')
+      session['user_id'] = user.id
+      #redirect to user homepage with user_id
+      return redirect(url_for('index', user_id=user.id))
+    else:
+      flash('Invalid email or password.')
+  return redirect(url_for('login'))
+'''

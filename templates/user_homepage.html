@@ -133,6 +133,64 @@
             </div>
         </div>
         <br>
+        <!-- Playlists -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Playlists</h2>
+                    <div id="carouselPlaylists" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for i in range(0, playlists|length, 3) %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <div class="row">
+                                    {% for playlist in playlists[i:i+3] %}
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ playlist.name }}</h5>
+                                                <a href="/playlists/{{ playlist.playlist_id }}" class="btn btn-primary">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Add carousel controls here -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Albums -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Albums</h2>
+                    <div id="carouselAlbums" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for i in range(0, albums|length, 3) %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <div class="row">
+                                    {% for album in albums[i:i+3] %}
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ album.name }}</h5>
+                                                <a href="/albums/{{ album.album_id }}" class="btn btn-primary">View</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- Add carousel controls here -->
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
